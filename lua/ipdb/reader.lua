@@ -1,4 +1,3 @@
-
 local bit = require("bit")
 local cjson = require("cjson")
 local ffi = require("ffi")
@@ -120,6 +119,64 @@ function _M.new(self, name)
         node_count = meta["node_count"],
         node_ipv4_start = 0,
     }, mt)
+end
+
+function _M.findArray(self, ips, language)
+    assert(self.meta["languages"][language], "language no support")
+
+    local ip_address = ""
+    local ip_type = 0
+
+    if str_find(ips, ":") then
+        ip_address = ip6_to_bin(ips)
+        ip_type = 6
+
+        assert(self:ipv6(), "ipv6 no support")
+    else
+        ip_address = ip4_to_bin(ips)
+        ip_type = 4
+
+        assert(self:ipv4(), "ipv4 no support")
+    end
+
+    local node = 0
+
+    if ip_type == 4 then
+        if self.node_ipv4_start == 0 then
+            for i = 0, 95 do
+                if i >= 80 then
+                    node = read_node(self.data, node, 1)
+                else
+                    node = read_node(self.data, node, 0)
+                end
+            end
+            self.node_ipv4_start = node
+        else
+            node = self.node_ipv4_start
+        end
+    end
+
+    for i = 0, 128 do
+        local val = band(1, rshift(ip_address[rshift(i, 3)], 7 - (i % 8)))
+        node = read_node(self.data, node, val)
+        if node > self.node_count then
+            break
+        end
+    end
+
+    if node < self.node_count then
+        return nil
+    end
+
+    local resolved = node - self.node_count + self.node_count * 8
+    local size = bytes_to_u32(
+            0,0,
+            str_byte(self.data, resolved+1),
+            str_byte(self.data, resolved+2)
+    )
+    local temp = str_sub(self.data, resolved+3, resolved+2+size)
+    local loc  = split(temp, "\t")
+    return loc
 end
 
 function _M.find(self, ips, language)

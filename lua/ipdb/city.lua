@@ -1,4 +1,3 @@
-
 local _M = {
     _VERSION = '0.1'
 }
@@ -7,12 +6,16 @@ local mt = {
     __index = _M
 }
 
-local reader = require("resty.ipdb.reader")
+local reader = require("lua.ipdb.reader")
 
 function _M.new(self, name)
     return setmetatable({
         db = reader:new(name),
     }, mt)
+end
+
+function _M.findArray(self, ips, language)
+    return self.db:findArray(ips, language)
 end
 
 function _M.find(self, ips, language)
