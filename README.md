@@ -5,8 +5,9 @@ Airdb Gate Way based on OpenResty.
 
 [Lua Nginx API](https://openresty-reference.readthedocs.io/en/latest/Lua_Nginx_API/)
 ```
-vagrant ssh
-openresty -p /vagrant/
+make build
+make run
+make runshell
 ```
 
 LC_ALL=C LANGUAGE=C  resty  lua/index.lua
