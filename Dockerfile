@@ -3,5 +3,6 @@ MAINTAINER  Copyright @ airdb.com
 
 RUN echo "export PS1='[\H \W]\\$ '" >> /root/.profile
 
+WORKDIR /usr/local/openresty/nginx
 EXPOSE 8080
-CMD ["openresty", "-c", "/etc/nginx/conf/nginx.conf"]
+CMD ["openresty"]

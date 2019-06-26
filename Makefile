@@ -1,17 +1,21 @@
 service="gateway.airdb.io"
-image="airdb/gateway"
+image="openresty/openresty"
 
 run:
-	docker run -d --name=${service}  -p9000:8080 -v $(shell pwd):/etc/nginx/  ${image}
-	#docker run -p9000:8080 -v $(shell pwd):/etc/nginx/ openresty/openresty "openresty" "-c" "/etc/nginx/conf/nginx.conf"
+	docker run -d --name=${service}  -p9000:8080 -v $(shell pwd)/conf/:/usr/local/openresty/nginx/conf ${image} "openresty"
+
 runshell:
 	docker run -d --name=${service}  -p9000:8080 -v $(shell pwd):/etc/nginx/  ${image} /bin/bash
+
+exec:
+	docker exec -it ${service} /bin/bash
 
 build:
 	docker build -t ${image} .
 
 reload restart:
 	docker restart ${service}
+	make test
 
 clean:
 	docker stop ${service}
@@ -19,3 +23,6 @@ clean:
 
 log logs:
 	docker logs -f ${service}
+
+test:
+	curl http://localhost:9000/
