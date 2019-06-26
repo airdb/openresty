@@ -5,7 +5,8 @@ local hello = require("lua.ipdb.hello")
 hello.new()
 
 local wrr = require("lua.common.smooth_wrr").new()
-wrr:smooth_wrr()
+-- wrr:smooth_wrr()
+wrr:test()
 
 local city = require("lua.ipdb.city")
 ipdb = city:new("/usr/local/openresty/nginx/conf/lua/ipdb/mydata4vipday4.ipdb")
