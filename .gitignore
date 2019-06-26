@@ -1,5 +1,6 @@
 .vagrant
 conf/lua/ipdb/mydata4vipday4.ipdb
 .idea/*
+*/.idea/*
 *_temp
 *.log
