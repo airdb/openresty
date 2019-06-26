@@ -1,9 +1,11 @@
-ngx.say("hello")
 cjson = require("cjson")
--- ngx.say(ngx.req)
--- local city = require("ipdb.city")
--- ngx.say("----")
--- ipdb = city:new("/etc/nginx/conf/lua/ipdb/mydata4vipday4.ipdb")
+
+-- make sure define lua_package_path in nginx.conf
+local hello = require("conf.lua.ipdb.hello")
+hello.new()
+
+-- local city = require("conf.lua.ipdb.city")
+-- ipdb = city:new("/conf/lua/ipdb/mydata4vipday4.ipdb")
 
 -- local loc = ipdb:findArray("123.125.114.144", "CN");
 
@@ -21,5 +23,4 @@ ngx.say(cjson.encode(json))
 -- ngx.say(ngx.md5("hello"))
 -- ngx.exit()
 
-
-ngx.say("hello")
+-- ngx.say("hello")
