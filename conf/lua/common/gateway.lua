@@ -17,7 +17,7 @@ function _M.set_current_peer(self, msg)
 		port = 8111,
 	}
 
-	ngx.log(ngx.INFO, 'set_current_peer_success|host=', node.host, ',port=', node.port)
+	ngx.log(ngx.INFO, 'set_current_peer_success|host=', node.host, ',port=', node.port, msg)
 	-- local ok, err = balancer.set_current_peer(node.host, node.port)
 	local ok, err = balancer.set_current_peer("127.0.0.1", 8111)
     if not ok then
