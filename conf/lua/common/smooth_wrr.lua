@@ -43,7 +43,7 @@ function _M.test(self)
 	        if best == nil then
 			ngx.say("can't found best")
 		end
-		ngx.say(ngx.ERR, "x====",  i, "==== ", best.Name)
+		ngx.say("index: ",  i, ", best node: ", best.Name)
 	end
 
 end
