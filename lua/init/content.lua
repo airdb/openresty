@@ -1,5 +1,7 @@
 cjson = require("cjson")
 
+ngx.say(ngx.req.get_method())
+--[[
 -- make sure define lua_package_path in nginx.conf
 local hello = require("lua.ipdb.hello")
 hello.new()
@@ -8,7 +10,7 @@ ngx.say(ngx.req.get_method())
 -- curl http://localhost:9000/xxx?ip=123.125.114.144
 
 local city = require("lua.ipdb.city")
-ipdb = city:new("/usr/local/openresty/nginx/conf/lua/ipdb/mydata4vipday4.ipdb")
+ipdb = city:new("/usr/local/openresty/nginx/lua/ipdb/mydata4vipday4.ipdb")
 
 local args = ngx.req.get_uri_args()
 
@@ -45,3 +47,4 @@ ngx.say(cjson.encode(json))
 -- ngx.exit()
 
 -- ngx.say("hello")
+--]]

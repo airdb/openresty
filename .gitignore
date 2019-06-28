@@ -1,5 +1,5 @@
-.vagrant
-conf/lua/ipdb/mydata4vipday4.ipdb
+lua/ipdb/mydata4vipday4.ipdb
+t/servroot/
 .idea/*
 */.idea/*
 *_temp
