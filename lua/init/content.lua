@@ -1,6 +1,6 @@
 cjson = require("cjson")
 
-ngx.say(ngx.req.get_method())
+ngx.say("GET")
 --[[
 -- make sure define lua_package_path in nginx.conf
 local hello = require("lua.ipdb.hello")
