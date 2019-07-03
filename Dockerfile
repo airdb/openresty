@@ -5,7 +5,6 @@ ENV WORKDIR /usr/local/openresty/nginx/
 WORKDIR ${WORKDIR}
 
 RUN echo "export PS1='[\H \W]\\$ '" >> /root/.profile
-
 RUN apt-get update && apt-get install -y wget gnupg2 && \
 	wget -qO - https://openresty.org/package/pubkey.gpg | apt-key add - && \
 	apt-get -y install software-properties-common && \
