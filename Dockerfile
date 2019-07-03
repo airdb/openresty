@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
 	apt-get -y install software-properties-common && \
 	add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
 
-RUN apt-get update && apt-get install -y openresty
+RUN apt-get update && apt-get install -y openresty && \
+	chown nobody ${WORKDIR}/logs
 # build-essential wget
 # RUN cpan Test::Nginx::Socket
 
