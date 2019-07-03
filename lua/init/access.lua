@@ -8,12 +8,12 @@ ngx.say(ngx.var.REMOTE_ADDR)
 
 local city = require("lua.ipdb.city")
 -- ipdb = city:new("/usr/local/openresty/nginx/lua/ipdb/mydata4vipday4.ipdb")
-ipdb = city:new("lua/ipdb/mydata4vipday4.ipdb")
+local ipdb = city:new("lua/ipdb/mydata4vipday4.ipdb")
 
 local ip = '123.125.114.144'
 local loc = ipdb:find(ip, "EN")
 
-cjson = require("cjson")
+local cjson = require("cjson")
 local json = {}
 json["ret"] = "ok"
 json["data"] = loc
