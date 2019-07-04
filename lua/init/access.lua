@@ -4,7 +4,7 @@ local uustr = require("lua.common.uustr")
 ngx.header['x-airdb-request-id'] = uustr.randomStr(64)
 -- X-Served-By:
 --
-ngx.say(ngx.var.REMOTE_ADDR)
+-- ngx.say(ngx.var.REMOTE_ADDR)
 
 -- local city = require("lua.ipdb.city")
 -- ipdb = city:new("/usr/local/openresty/nginx/lua/ipdb/mydata4vipday4.ipdb")
