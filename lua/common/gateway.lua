@@ -30,12 +30,15 @@ function _M.set_current_peer(self, msg)
 	-- return ngx.exit(ngx.HTTP_BAD_GATEWAY)
 end
 
-function _M.set_current_peer1(self, msg)
+function _M.set_current_peer1(self, msg, args)
 	node = {
 		host = '127.0.0.1',
 		port = 8111,
 	}
 
+	if args == nil then
+		ngx.log(ngx.ERR, "xxxxxxx===============", args)
+        end
 	ngx.log(ngx.INFO, 'set_current_peer_success|host=', node.host, ',port=', node.port, msg)
 	-- local ok, err = balancer.set_current_peer(node.host, node.port)
 	local ok, err = balancer.set_current_peer("127.0.0.1", 8111)
